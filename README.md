@@ -3,6 +3,6 @@
 ## Introduction
 
 ## Purpose
-
+* Using git diff
 ## How to Contribute
 Corrected the spelling 

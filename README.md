@@ -4,4 +4,5 @@
 
 ## Purpose
 
-## How to Conribute
+## How to Contribute
+Corrected the spelling 

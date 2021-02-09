@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+Changes made by Master
+=======
+Changes made by feture branch
+>>>>>>> featureBranch

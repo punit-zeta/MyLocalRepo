@@ -1,0 +1,658 @@
+Last login: Tue Feb  9 23:49:45 on ttys000
+punit.s@BBMDVPUNITS ~ % mysql
+ERROR 1045 (28000): Access denied for user 'punit.s'@'localhost' (using password: NO)
+punit.s@BBMDVPUNITS ~ % mysql -u root -p 
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.23 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database StudentDB
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use StudentDB
+Database changed
+mysql> create table student
+    -> ( roll int(10) auto_increment primary key,
+    -> 
+    -> first name varchar(30) not null,
+    -> last name varchar(30) not null,
+    -> email varchar(50) not null,
+    -> phone varchar(50),
+    -> date timestamp);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name varchar(30) not null,
+last name varchar(30) not null,
+email varchar(50) not' at line 4
+mysql> ( roll int(10) auto_increment primary key,
+    -> firstName varchar(30) not null,
+    -> lastName varchar(30) not null,
+    -> email varchar(50) not null,
+    -> phone varchar(50),
+    -> date timestamp);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'roll int(10) auto_increment primary key,
+firstName varchar(30) not null,
+lastNam' at line 1
+mysql> create table student ( roll int(10) auto_increment primary key, firstName varchar(30) not null, lastName varchar(30) not null, email varchar(50) not null, phone varchar(50), date timestamp);
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> insert into student (firstName,lastName,mobile,email,date) values 
+    -> ('punit', 'sharma', '8130259618', 'prem20108@gmail.com', now());
+ERROR 1054 (42S22): Unknown column 'mobile' in 'field list'
+mysql> insert into student (firstName,lastName,phone,email,date) values  ('punit
+', 'sharma', '8130259618', 'prem20108@gmail.com', now());
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student
+    -> ;
++------+-----------+----------+---------------------+------------+---------------------+
+| roll | firstName | lastName | email               | phone      | date                |
++------+-----------+----------+---------------------+------------+---------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 8130259618 | 2021-02-10 00:45:42 |
++------+-----------+----------+---------------------+------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into student (firstName,lastName,phone,email,date) values  ('prem', 'sharma', '8130259618', 'prem20108@gmail.com', now());
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student (firstName,lastName,phone,email,date) values  ('prem', 'kumar', '8130259618', 'prem20108@gmail.com', now());
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+-----------+----------+---------------------+------------+---------------------+
+| roll | firstName | lastName | email               | phone      | date                |
++------+-----------+----------+---------------------+------------+---------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 8130259618 | 2021-02-10 00:45:42 |
+|    2 | prem      | sharma   | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:01 |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |
++------+-----------+----------+---------------------+------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> select distinct phone
+    -> ;
+ERROR 1054 (42S22): Unknown column 'phone' in 'field list'
+mysql> select distinct phone from student
+    -> ;
++------------+
+| phone      |
++------------+
+| 8130259618 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select distinct phone,firstName from student;
++------------+-----------+
+| phone      | firstName |
++------------+-----------+
+| 8130259618 | punit     |
+| 8130259618 | prem      |
++------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select distinct phone,firstName,lastName from student;
++------------+-----------+----------+
+| phone      | firstName | lastName |
++------------+-----------+----------+
+| 8130259618 | punit     | sharma   |
+| 8130259618 | prem      | sharma   |
+| 8130259618 | prem      | kumar    |
++------------+-----------+----------+
+3 rows in set (0.01 sec)
+
+mysql> select * from student limit 2
+    -> ;
++------+-----------+----------+---------------------+------------+---------------------+
+| roll | firstName | lastName | email               | phone      | date                |
++------+-----------+----------+---------------------+------------+---------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 8130259618 | 2021-02-10 00:45:42 |
+|    2 | prem      | sharma   | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:01 |
++------+-----------+----------+---------------------+------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student limit 1,2;
++------+-----------+----------+---------------------+------------+---------------------+
+| roll | firstName | lastName | email               | phone      | date                |
++------+-----------+----------+---------------------+------------+---------------------+
+|    2 | prem      | sharma   | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:01 |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |
++------+-----------+----------+---------------------+------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student limit 1,3;
++------+-----------+----------+---------------------+------------+---------------------+
+| roll | firstName | lastName | email               | phone      | date                |
++------+-----------+----------+---------------------+------------+---------------------+
+|    2 | prem      | sharma   | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:01 |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |
++------+-----------+----------+---------------------+------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student limit 1,100;
++------+-----------+----------+---------------------+------------+---------------------+
+| roll | firstName | lastName | email               | phone      | date                |
++------+-----------+----------+---------------------+------------+---------------------+
+|    2 | prem      | sharma   | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:01 |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |
++------+-----------+----------+---------------------+------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student limit 2,1;
++------+-----------+----------+---------------------+------------+---------------------+
+| roll | firstName | lastName | email               | phone      | date                |
++------+-----------+----------+---------------------+------------+---------------------+
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |
++------+-----------+----------+---------------------+------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student order by roll desc limit 1;
++------+-----------+----------+---------------------+------------+---------------------+
+| roll | firstName | lastName | email               | phone      | date                |
++------+-----------+----------+---------------------+------------+---------------------+
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |
++------+-----------+----------+---------------------+------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> update student set phone = '9871066743' where lastName='sharma';
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> 
+mysql> select * from student;
++------+-----------+----------+---------------------+------------+---------------------+
+| roll | firstName | lastName | email               | phone      | date                |
++------+-----------+----------+---------------------+------------+---------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |
+|    2 | prem      | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:50:01 |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |
++------+-----------+----------+---------------------+------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> update student set phone = '997166743' where firstName='prem' and lastName='sharma';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+-----------+----------+---------------------+------------+---------------------+
+| roll | firstName | lastName | email               | phone      | date                |
++------+-----------+----------+---------------------+------------+---------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |
++------+-----------+----------+---------------------+------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql>  describe student;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| roll      | int         | NO   | PRI | NULL    | auto_increment |
+| firstName | varchar(30) | NO   |     | NULL    |                |
+| lastName  | varchar(30) | NO   |     | NULL    |                |
+| email     | varchar(50) | NO   |     | NULL    |                |
+| phone     | varchar(50) | YES  |     | NULL    |                |
+| date      | timestamp   | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> aysql> alter table studeft modif 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'modif' at line 1
+mysql> alter table student modify column phone unique;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'unique' at line 1
+mysql> alter table student modify column phone varchar(20) unique;
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> describe students
+    -> ;
+ERROR 1146 (42S02): Table 'studentdb.students' doesn't exist
+mysql> describe student;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| roll      | int         | NO   | PRI | NULL    | auto_increment |
+| firstName | varchar(30) | NO   |     | NULL    |                |
+| lastName  | varchar(30) | NO   |     | NULL    |                |
+| email     | varchar(50) | NO   |     | NULL    |                |
+| phone     | varchar(20) | YES  | UNI | NULL    |                |
+| date      | timestamp   | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+6 rows in set (0.01 sec)
+
+mysql>  select database();
++------------+
+| database() |
++------------+
+| studentdb  |
++------------+
+1 row in set (0.00 sec)
+
+mysql> status;
+--------------
+mysql  Ver 8.0.23 for macos10.15 on x86_64 (MySQL Community Server - GPL)
+
+Connection id:		15
+Current database:	studentdb
+Current user:		root@localhost
+SSL:			Not in use
+Current pager:		stdout
+Using outfile:		''
+Using delimiter:	;
+Server version:		8.0.23 MySQL Community Server - GPL
+Protocol version:	10
+Connection:		Localhost via UNIX socket
+Server characterset:	utf8mb4
+Db     characterset:	utf8mb4
+Client characterset:	utf8mb4
+Conn.  characterset:	utf8mb4
+UNIX socket:		/tmp/mysql.sock
+Binary data as:		Hexadecimal
+Uptime:			11 hours 27 min 46 sec
+
+Threads: 2  Questions: 44  Slow queries: 0  Opens: 143  Flush tables: 3  Open tables: 62  Queries per second avg: 0.001
+--------------
+
+mysql> create table studentBackup roll int(10) auto_increment primary key, firstName varchar(30) not null, lastName varchar(30) not null, email varchar(50) not null, phone varchar(50), date timestamp);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'roll int(10) auto_increment primary key, firstName varchar(30) not null, lastNam' at line 1
+mysql> create table studentBackup (roll int(10) auto_increment primary key, firstName varchar(30) not null, lastName varchar(30) not null, email varchar(50) not null, phone varchar(50), date timestamp);
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> select * from studentBackup;
+Empty set (0.00 sec)
+
+mysql> insert into studentBackup select * from student;
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from studentBackup;
++------+-----------+----------+---------------------+------------+---------------------+
+| roll | firstName | lastName | email               | phone      | date                |
++------+-----------+----------+---------------------+------------+---------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |
++------+-----------+----------+---------------------+------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> drop studentBackup;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'studentBackup' at line 1
+mysql> drop table studentBackup;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create table studentBackup like student;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> describe studentBackup;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| roll      | int         | NO   | PRI | NULL    | auto_increment |
+| firstName | varchar(30) | NO   |     | NULL    |                |
+| lastName  | varchar(30) | NO   |     | NULL    |                |
+| email     | varchar(50) | NO   |     | NULL    |                |
+| phone     | varchar(20) | YES  | UNI | NULL    |                |
+| date      | timestamp   | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from studentBackup;
+Empty set (0.00 sec)
+
+mysql> insert into studentBackup select * from student;
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from studentBackup;
++------+-----------+----------+---------------------+------------+---------------------+
+| roll | firstName | lastName | email               | phone      | date                |
++------+-----------+----------+---------------------+------------+---------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |
++------+-----------+----------+---------------------+------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> drop table studentBackup;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create table studentBackup (roll int(10) auto_increment primary key, firstName varchar(30) not null, lastName varchar(30) not null, email varchar(50) not null);
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> describe studentBackup;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| roll      | int         | NO   | PRI | NULL    | auto_increment |
+| firstName | varchar(30) | NO   |     | NULL    |                |
+| lastName  | varchar(30) | NO   |     | NULL    |                |
+| email     | varchar(50) | NO   |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into studentBackup (email,lastName,firstName)  select email,lastName,firstName from student;
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into studentBackup (email,lastName,firstName)  select email,lastName,firstName from student;
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from studentBackup;
++------+-----------+----------+---------------------+
+| roll | firstName | lastName | email               |
++------+-----------+----------+---------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com |
+|    2 | prem      | sharma   | prem20108@gmail.com |
+|    3 | prem      | kumar    | prem20108@gmail.com |
+|    4 | punit     | sharma   | prem20108@gmail.com |
+|    5 | prem      | sharma   | prem20108@gmail.com |
+|    6 | prem      | kumar    | prem20108@gmail.com |
++------+-----------+----------+---------------------+
+6 rows in set (0.00 sec)
+
+mysql> delete from studentBackup where roll between 4 and 6;
+Query OK, 3 rows affected (0.00 sec)
+
+mysql> select * from studentBackup;
++------+-----------+----------+---------------------+
+| roll | firstName | lastName | email               |
++------+-----------+----------+---------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com |
+|    2 | prem      | sharma   | prem20108@gmail.com |
+|    3 | prem      | kumar    | prem20108@gmail.com |
++------+-----------+----------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> update studentBackup set lastName = select concat(lastName,roll) from student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select concat(lastName,roll) from student' at line 1
+mysql> select concat(lastName,roll) from student;
++-----------------------+
+| concat(lastName,roll) |
++-----------------------+
+| sharma1               |
+| sharma2               |
+| kumar3                |
++-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> update studentBackup set lastName = select concat(lastName,roll) as lastName from stude
+nt;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select concat(lastName,roll) as lastName from student' at line 1
+mysql> update studentBackup set email = firstName+lastName+'@gmail.com';
+ERROR 1292 (22007): Truncated incorrect DOUBLE value: 'punit'
+mysql> update studentBackup set email = concat(firstName,lastName,'@gmail.com');
+Query OK, 3 rows affected (0.00 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from studentBackup;
++------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email                 |
++------+-----------+----------+-----------------------+
+|    1 | punit     | sharma   | punitsharma@gmail.com |
+|    2 | prem      | sharma   | premsharma@gmail.com  |
+|    3 | prem      | kumar    | premkumar@gmail.com   |
++------+-----------+----------+-----------------------+
+3 rows in set (0.01 sec)
+
+mysql> update studentBackup set firstName = 'shubham' where roll = 3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from studentBackup;
++------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email                 |
++------+-----------+----------+-----------------------+
+|    1 | punit     | sharma   | punitsharma@gmail.com |
+|    2 | prem      | sharma   | premsharma@gmail.com  |
+|    3 | shubham   | kumar    | premkumar@gmail.com   |
++------+-----------+----------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student inner join studentBackup on student.roll = studentBackup.roll;
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email               | phone      | date                | roll | firstName | lastName | email                 |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |    3 | shubham   | kumar    | premkumar@gmail.com   |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student innezsh: segmentation fault  mysql -u root -pudentBackup.roll;
+punit.s@BBMDVPUNITS ~ % mysql -u root -p 
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.23 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use studentdb;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select * from student inner join studentBackup on student.roll = studentBackup.roll;
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email               | phone      | date                | roll | firstName | lastName | email                 |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |    3 | shubham   | kumar    | premkumar@gmail.com   |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student natrual join studentBackup on student.roll = studentBackup.roll;
+ERROR 1054 (42S22): Unknown column 'student.roll' in 'on clause'
+mysql> select * from student naturul join studentBackup on student.roll = studentBackup.roll;
+ERROR 1054 (42S22): Unknown column 'student.roll' in 'on clause'
+mysql> select * from student naturul join studentBackup on student.roll = studentBackup.roll where student.roll mod 2 = 1;
+ERROR 1054 (42S22): Unknown column 'student.roll' in 'where clause'
+mysql> select * from student naturul join studentBackup on student.roll = studentBackup.roll;
+ERROR 1054 (42S22): Unknown column 'student.roll' in 'on clause'
+mysql> select * from student inner join studentBackup on student.roll = studentBackup.roll;
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email               | phone      | date                | roll | firstName | lastName | email                 |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |    3 | shubham   | kumar    | premkumar@gmail.com   |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student inner join studentBackup on student.roll = studentBackup.roll where student.roll mod 2 = 1;
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email               | phone      | date                | roll | firstName | lastName | email                 |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |    3 | shubham   | kumar    | premkumar@gmail.com   |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student natural join studentBackup on student.roll = studentBackup.roll;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on student.roll = studentBackup.roll' at line 1
+mysql> insert into student values (firstName,lastName,email,phone,date) values ('nishu','rana','nishurana@yahoo.com','9134234506'now());
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values ('nishu','rana','nishurana@yahoo.com','9134234506'now())' at line 1
+mysql> insert into student values (firstName,lastName,email,phone,date) values ('nishu','rana','nishurana@yahoo.com','9134234506',now());
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values ('nishu','rana','nishurana@yahoo.com','9134234506',now())' at line 1
+mysql> insert into student (firstName,lastName,email,phone,date) values ('nishu','rana','nishurana@yahoo.com','9134234506',now());
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student inner join studentBackup on student.roll = studentBackup.roll;
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email               | phone      | date                | roll | firstName | lastName | email                 |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |    3 | shubham   | kumar    | premkumar@gmail.com   |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student left join on student.roll = studentBackup.roll;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on student.roll = studentBackup.roll' at line 1
+mysql> select * from student left join studentBackup on student.roll = studentBackup.roll;
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email               | phone      | date                | roll | firstName | lastName | email                 |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |    3 | shubham   | kumar    | premkumar@gmail.com   |
+|    4 | nishu     | rana     | nishurana@yahoo.com | 9134234506 | 2021-02-10 14:39:48 | NULL | NULL      | NULL     | NULL                  |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student right join studentBackup on student.roll = studentBackup.roll;
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email               | phone      | date                | roll | firstName | lastName | email                 |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |    3 | shubham   | kumar    | premkumar@gmail.com   |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+3 rows in set (0.01 sec)
+
+mysql> select * from student right on studentBackup on student.lastName = studentBackup.lastName;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on studentBackup on student.lastName = studentBackup.lastName' at line 1
+mysql> select * from student right join on studentBackup on student.lastName = studentBackup.lastNam
+e;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on studentBackup on student.lastName = studentBackup.lastName' at line 1
+mysql> select * from student right join on studentBackup on student.roll = studentBackup.roll;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on studentBackup on student.roll = studentBackup.roll' at line 1
+mysql> select * from student right join studentBackup on student.roll = studentBackup.roll;
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email               | phone      | date                | roll | firstName | lastName | email                 |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |    3 | shubham   | kumar    | premkumar@gmail.com   |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student right join studentBackup on student.lastName = studentBackup.lastName;
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email               | phone      | date                | roll | firstName | lastName | email                 |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |    3 | shubham   | kumar    | premkumar@gmail.com   |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+5 rows in set (0.00 sec)
+
+mysql> mysql> select * from student left join studentBackup on student.lastName = studentBackup.lastName;
+ERROR 1054 (42S22): Unknown column 'student.lastName' in 'on clause'
+mysql> select * from student left join studentBackup on student.roll = studentBackup.roll;
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email               | phone      | date                | roll | firstName | lastName | email                 |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |    3 | shubham   | kumar    | premkumar@gmail.com   |
+|    4 | nishu     | rana     | nishurana@yahoo.com | 9134234506 | 2021-02-10 14:39:48 | NULL | NULL      | NULL     | NULL                  |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student left join studentBackup on student.lastName = studentBackup.lastName;
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email               | phone      | date                | roll | firstName | lastName | email                 |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |    3 | shubham   | kumar    | premkumar@gmail.com   |
+|    4 | nishu     | rana     | nishurana@yahoo.com | 9134234506 | 2021-02-10 14:39:48 | NULL | NULL      | NULL     | NULL                  |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student full outer join studentBackup on student.lastName = studentBackup.lastName;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'outer join studentBackup on student.lastName = studentBackup.lastName' at line 1
+mysql> select * from student full outer join studentBackup on student.lastName = studentBackup.lastName;
+zsh: segmentation fault  mysql -u root -p
+punit.s@BBMDVPUNITS ~ % mysql -u root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+punit.s@BBMDVPUNITS ~ % mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 8.0.23 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use studentdb;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select * from student full join studentBackup on student.roll = studentBackup.roll;
+ERROR 1054 (42S22): Unknown column 'student.roll' in 'on clause'
+mysql> select * from student left join studentBackup on student.lastName = studentBackup.lastName;
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email               | phone      | date                | roll | firstName | lastName | email                 |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |    3 | shubham   | kumar    | premkumar@gmail.com   |
+|    4 | nishu     | rana     | nishurana@yahoo.com | 9134234506 | 2021-02-10 14:39:48 | NULL | NULL      | NULL     | NULL                  |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student full join studentBackup on student.lastName = studentBackup.lastName;
+ERROR 1054 (42S22): Unknown column 'student.lastName' in 'on clause'
+mysql> select * from student full join studentBackup on student.roll = studentBackup.roll;
+ERROR 1054 (42S22): Unknown column 'student.roll' in 'on clause'
+mysql> describe student;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| roll      | int         | NO   | PRI | NULL    | auto_increment |
+| firstName | varchar(30) | NO   |     | NULL    |                |
+| lastName  | varchar(30) | NO   |     | NULL    |                |
+| email     | varchar(50) | NO   |     | NULL    |                |
+| phone     | varchar(20) | YES  | UNI | NULL    |                |
+| date      | timestamp   | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student full join studentBackup on student.roll = studentBackup.roll;
+ERROR 1054 (42S22): Unknown column 'student.roll' in 'on clause'
+mysql> select * from student full outer join studentBackup on student.roll = studentBackup.roll;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'outer join studentBackup on student.roll = studentBackup.roll' at line 1
+mysql> select * from student left join studentBackup on student.roll = studentBackup.roll;
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+| roll | firstName | lastName | email               | phone      | date                | roll | firstName | lastName | email                 |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+|    1 | punit     | sharma   | prem20108@gmail.com | 9871066743 | 2021-02-10 00:45:42 |    1 | punit     | sharma   | punitsharma@gmail.com |
+|    2 | prem      | sharma   | prem20108@gmail.com | 997166743  | 2021-02-10 00:50:01 |    2 | prem      | sharma   | premsharma@gmail.com  |
+|    3 | prem      | kumar    | prem20108@gmail.com | 8130259618 | 2021-02-10 00:50:22 |    3 | shubham   | kumar    | premkumar@gmail.com   |
+|    4 | nishu     | rana     | nishurana@yahoo.com | 9134234506 | 2021-02-10 14:39:48 | NULL | NULL      | NULL     | NULL                  |
++------+-----------+----------+---------------------+------------+---------------------+------+-----------+----------+-----------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student full outer join studentBackup on student.roll = studentBackup.roll;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'outer join studentBackup on student.roll = studentBackup.roll' at line 1
+mysql> 

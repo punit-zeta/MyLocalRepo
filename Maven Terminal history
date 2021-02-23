@@ -1,0 +1,336 @@
+Last login: Tue Feb 23 21:28:19 on ttys000
+punit.s@BBMDVPUNITS ~ % ls
+Applications		Movies			Public
+Desktop			Music			eclipse
+Documents		MyGitHub		eclipse-workspace
+Downloads		Pictures		getting-started
+IdeaProjects		Postman			github-demo
+Library			Postman Agent		homebrew
+punit.s@BBMDVPUNITS ~ % cd 
+punit.s@BBMDVPUNITS ~ % cd IdeaProjects
+punit.s@BBMDVPUNITS IdeaProjects % ls
+JavaProject		demoMavenProject
+punit.s@BBMDVPUNITS IdeaProjects % cd demoMavenProject
+punit.s@BBMDVPUNITS demoMavenProject % l
+zsh: command not found: l
+punit.s@BBMDVPUNITS demoMavenProject % ls
+demoMavenProject.iml	pom.xml			src
+punit.s@BBMDVPUNITS demoMavenProject % mvn --version
+Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)
+Maven home: /Users/punit.s/Documents/apache-maven-3.6.3
+Java version: 15.0.2, vendor: Oracle Corporation, runtime: /Library/Java/JavaVirtualMachines/jdk-15.0.2.jdk/Contents/Home
+Default locale: en_GB, platform encoding: UTF-8
+OS name: "mac os x", version: "10.16", arch: "x86_64", family: "mac"
+punit.s@BBMDVPUNITS demoMavenProject % mvn clean
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< org.example:demoMavenProject >--------------------
+[INFO] Building demoMavenProject 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ demoMavenProject ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.200 s
+[INFO] Finished at: 2021-02-23T23:36:07+05:30
+[INFO] ------------------------------------------------------------------------
+punit.s@BBMDVPUNITS demoMavenProject % mvn validate
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< org.example:demoMavenProject >--------------------
+[INFO] Building demoMavenProject 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.071 s
+[INFO] Finished at: 2021-02-23T23:36:38+05:30
+[INFO] ------------------------------------------------------------------------
+punit.s@BBMDVPUNITS demoMavenProject % mvn compile
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< org.example:demoMavenProject >--------------------
+[INFO] Building demoMavenProject 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ demoMavenProject ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ demoMavenProject ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.662 s
+[INFO] Finished at: 2021-02-23T23:36:55+05:30
+[INFO] ------------------------------------------------------------------------
+punit.s@BBMDVPUNITS demoMavenProject % mvn test
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< org.example:demoMavenProject >--------------------
+[INFO] Building demoMavenProject 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ demoMavenProject ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ demoMavenProject ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ demoMavenProject ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /Users/punit.s/IdeaProjects/demoMavenProject/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ demoMavenProject ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 4 source files to /Users/punit.s/IdeaProjects/demoMavenProject/target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] Source option 6 is no longer supported. Use 7 or later.
+[ERROR] Target option 6 is no longer supported. Use 7 or later.
+[INFO] 2 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.793 s
+[INFO] Finished at: 2021-02-23T23:37:13+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:testCompile (default-testCompile) on project demoMavenProject: Compilation failure: Compilation failure: 
+[ERROR] Source option 6 is no longer supported. Use 7 or later.
+[ERROR] Target option 6 is no longer supported. Use 7 or later.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+punit.s@BBMDVPUNITS demoMavenProject % mvn compile
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< org.example:demoMavenProject >--------------------
+[INFO] Building demoMavenProject 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ demoMavenProject ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ demoMavenProject ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.555 s
+[INFO] Finished at: 2021-02-23T23:39:06+05:30
+[INFO] ------------------------------------------------------------------------
+punit.s@BBMDVPUNITS demoMavenProject % mvn test   
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< org.example:demoMavenProject >--------------------
+[INFO] Building demoMavenProject 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ demoMavenProject ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ demoMavenProject ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ demoMavenProject ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /Users/punit.s/IdeaProjects/demoMavenProject/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ demoMavenProject ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 4 source files to /Users/punit.s/IdeaProjects/demoMavenProject/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ demoMavenProject ---
+[INFO] Surefire report directory: /Users/punit.s/IdeaProjects/demoMavenProject/target/surefire-reports
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/2.12.4/surefire-junit4-2.12.4.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/2.12.4/surefire-junit4-2.12.4.pom (2.4 kB at 1.2 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-providers/2.12.4/surefire-providers-2.12.4.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-providers/2.12.4/surefire-providers-2.12.4.pom (2.3 kB at 4.6 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/2.12.4/surefire-junit4-2.12.4.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/2.12.4/surefire-junit4-2.12.4.jar (37 kB at 26 kB/s)
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running Testing.JUnitTest
+Testing JUnitTest ...
+
+Running test number 1
+Finished test number 1
+Finished JUnitTest !!!
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.063 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.687 s
+[INFO] Finished at: 2021-02-23T23:39:15+05:30
+[INFO] ------------------------------------------------------------------------
+punit.s@BBMDVPUNITS demoMavenProject % mvn package
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< org.example:demoMavenProject >--------------------
+[INFO] Building demoMavenProject 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ demoMavenProject ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ demoMavenProject ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ demoMavenProject ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /Users/punit.s/IdeaProjects/demoMavenProject/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ demoMavenProject ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ demoMavenProject ---
+[INFO] Surefire report directory: /Users/punit.s/IdeaProjects/demoMavenProject/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running Testing.JUnitTest
+Testing JUnitTest ...
+
+Running test number 1
+Finished test number 1
+Finished JUnitTest !!!
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.063 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ demoMavenProject ---
+[INFO] Building jar: /Users/punit.s/IdeaProjects/demoMavenProject/target/demoMavenProject-1.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.142 s
+[INFO] Finished at: 2021-02-23T23:40:57+05:30
+[INFO] ------------------------------------------------------------------------
+punit.s@BBMDVPUNITS demoMavenProject % mvn verify
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< org.example:demoMavenProject >--------------------
+[INFO] Building demoMavenProject 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ demoMavenProject ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ demoMavenProject ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ demoMavenProject ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /Users/punit.s/IdeaProjects/demoMavenProject/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ demoMavenProject ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ demoMavenProject ---
+[INFO] Surefire report directory: /Users/punit.s/IdeaProjects/demoMavenProject/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running Testing.JUnitTest
+Testing JUnitTest ...
+
+Running test number 1
+Finished test number 1
+Finished JUnitTest !!!
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.062 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ demoMavenProject ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.127 s
+[INFO] Finished at: 2021-02-23T23:41:38+05:30
+[INFO] ------------------------------------------------------------------------
+punit.s@BBMDVPUNITS demoMavenProject % mvn install
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< org.example:demoMavenProject >--------------------
+[INFO] Building demoMavenProject 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ demoMavenProject ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ demoMavenProject ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ demoMavenProject ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /Users/punit.s/IdeaProjects/demoMavenProject/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ demoMavenProject ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ demoMavenProject ---
+[INFO] Surefire report directory: /Users/punit.s/IdeaProjects/demoMavenProject/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running Testing.JUnitTest
+Testing JUnitTest ...
+
+Running test number 1
+Finished test number 1
+Finished JUnitTest !!!
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.063 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ demoMavenProject ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ demoMavenProject ---
+[INFO] Installing /Users/punit.s/IdeaProjects/demoMavenProject/target/demoMavenProject-1.0-SNAPSHOT.jar to /Users/punit.s/.m2/repository/org/example/demoMavenProject/1.0-SNAPSHOT/demoMavenProject-1.0-SNAPSHOT.jar
+[INFO] Installing /Users/punit.s/IdeaProjects/demoMavenProject/pom.xml to /Users/punit.s/.m2/repository/org/example/demoMavenProject/1.0-SNAPSHOT/demoMavenProject-1.0-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.167 s
+[INFO] Finished at: 2021-02-23T23:41:55+05:30
+[INFO] ------------------------------------------------------------------------
+punit.s@BBMDVPUNITS demoMavenProject % 

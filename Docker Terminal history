@@ -1,0 +1,614 @@
+Last login: Thu Feb 18 14:06:11 on ttys001
+punit.s@BBMDVPUNITS ~ % docker container ls
+CONTAINER ID   IMAGE               COMMAND                  CREATED          STATUS          PORTS                NAMES
+b6ef241c416f   nginx:latest        "/docker-entrypoint.…"   54 seconds ago   Up 54 seconds   80/tcp               adoring_shaw
+d9adbacdc669   docker101tutorial   "/docker-entrypoint.…"   11 minutes ago   Up 11 minutes   0.0.0.0:80->80/tcp   docker-tutorial
+punit.s@BBMDVPUNITS ~ % docker container ls
+CONTAINER ID   IMAGE               COMMAND                  CREATED          STATUS          PORTS                NAMES
+d9adbacdc669   docker101tutorial   "/docker-entrypoint.…"   12 minutes ago   Up 12 minutes   0.0.0.0:80->80/tcp   docker-tutorial
+punit.s@BBMDVPUNITS ~ % docker container ls
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+punit.s@BBMDVPUNITS ~ % docker ps 
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+punit.s@BBMDVPUNITS ~ % docker run -d -p 8080:80 nginx:latest
+bb7fa5c33b06f71cc368816ebb7c721ecf18345fd28e904e9312571e84f0d501
+punit.s@BBMDVPUNITS ~ % docker ps                            
+CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS              PORTS                  NAMES
+bb7fa5c33b06   nginx:latest   "/docker-entrypoint.…"   About a minute ago   Up About a minute   0.0.0.0:8080->80/tcp   charming_austin
+punit.s@BBMDVPUNITS ~ % docker stop bb7fa5c33b06
+bb7fa5c33b06
+punit.s@BBMDVPUNITS ~ % docker ps               
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+punit.s@BBMDVPUNITS ~ % docker run -d -p 3000:80 nginx:latest
+1307e98a3f6aa307709bde92559fd8f3b4c6a30e8d911eba8c053bf1d2c6bc80
+punit.s@BBMDVPUNITS ~ % docker ps                            
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                  NAMES
+1307e98a3f6a   nginx:latest   "/docker-entrypoint.…"   16 minutes ago   Up 16 minutes   0.0.0.0:3000->80/tcp   heuristic_roentgen
+punit.s@BBMDVPUNITS ~ % docker rm -f $(docker ps -aq)        
+1307e98a3f6a
+bb7fa5c33b06
+b6ef241c416f
+d9adbacdc669
+4fae0d3acae2
+punit.s@BBMDVPUNITS ~ % docker ps                    
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+punit.s@BBMDVPUNITS ~ % docker run -d -p 3000:80 nginx:latest
+b7104cc07aab39d56f7793a882c03b1264172f51551a6276af755150b37aefef
+punit.s@BBMDVPUNITS ~ % docker ps                            
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS        PORTS                  NAMES
+b7104cc07aab   nginx:latest   "/docker-entrypoint.…"   2 seconds ago   Up 1 second   0.0.0.0:3000->80/tcp   happy_raman
+punit.s@BBMDVPUNITS ~ % docker rm -f $(docker ps -aq)        
+b7104cc07aab
+punit.s@BBMDVPUNITS ~ % docker --name website run -d -p 3000:80 nginx:latest
+unknown flag: --name
+See 'docker --help'.
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/Users/punit.s/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default
+                           context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/Users/punit.s/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/Users/punit.s/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/Users/punit.s/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  app*        Docker App (Docker Inc., v0.9.1-beta3)
+  builder     Manage builds
+  buildx*     Build with BuildKit (Docker Inc., v0.5.1-docker)
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  scan*       Docker Scan (Docker Inc., v0.5.0)
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+
+punit.s@BBMDVPUNITS ~ % docker -run  --name website run -d -p 8080:80 nginx:latest
+unknown shorthand flag: 'r' in -run
+See 'docker --help'.
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/Users/punit.s/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default
+                           context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/Users/punit.s/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/Users/punit.s/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/Users/punit.s/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  app*        Docker App (Docker Inc., v0.9.1-beta3)
+  builder     Manage builds
+  buildx*     Build with BuildKit (Docker Inc., v0.5.1-docker)
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  scan*       Docker Scan (Docker Inc., v0.5.0)
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+
+punit.s@BBMDVPUNITS ~ % docker run  --name website run -d -p 8080:80 nginx:latest 
+Unable to find image 'run:latest' locally
+docker: Error response from daemon: pull access denied for run, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+punit.s@BBMDVPUNITS ~ % docker run  --name website -d -p 8080:80 nginx:latest 
+fcdacab09258dd17255270c1c144e6ccc8dddf59572f0d1135ae7add0c4d6b7d
+punit.s@BBMDVPUNITS ~ % docker ps                                                 
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                  NAMES
+fcdacab09258   nginx:latest   "/docker-entrypoint.…"   27 seconds ago   Up 26 seconds   0.0.0.0:8080->80/tcp   website
+punit.s@BBMDVPUNITS ~ % dockter stop website
+zsh: command not found: dockter
+punit.s@BBMDVPUNITS ~ % docker stop website 
+website
+punit.s@BBMDVPUNITS ~ % docker rm website
+website
+punit.s@BBMDVPUNITS ~ % pwd
+/Users/punit.s
+punit.s@BBMDVPUNITS ~ % cd Documents
+punit.s@BBMDVPUNITS Documents % mkdir website
+punit.s@BBMDVPUNITS Documents % ls
+Terminal Saved Output	apache-maven-3.6.3	website
+punit.s@BBMDVPUNITS Documents % cd website
+punit.s@BBMDVPUNITS website % mate index.html
+punit.s@BBMDVPUNITS website % ls
+index.html
+punit.s@BBMDVPUNITS website % docker run --name website -v $(pwd) -d -p 8080:80 nginx       
+f4a1b1ee1ff46b9e2a175dbde7b1f9a32cf7202ad5a771afcaca9f69988db312
+punit.s@BBMDVPUNITS website % pwd
+/Users/punit.s/Documents/website
+punit.s@BBMDVPUNITS website % docker run --name website -v $(pwd):/usr/share/nginx/html:ro -d -p 8080:80 nginx
+docker: Error response from daemon: Conflict. The container name "/website" is already in use by container "f4a1b1ee1ff46b9e2a175dbde7b1f9a32cf7202ad5a771afcaca9f69988db312". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+punit.s@BBMDVPUNITS website % docker run --name website -v $(pwd):/usr/share/nginx/html:ro -d -p 8080:80 nginx:latest
+docker: Error response from daemon: Conflict. The container name "/website" is already in use by container "f4a1b1ee1ff46b9e2a175dbde7b1f9a32cf7202ad5a771afcaca9f69988db312". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+punit.s@BBMDVPUNITS website % docker run --name website -v $(pwd):/usr/share/nginx/html:ro -d -p 8080:80 nginx:latest
+docker: Error response from daemon: Conflict. The container name "/website" is already in use by container "f4a1b1ee1ff46b9e2a175dbde7b1f9a32cf7202ad5a771afcaca9f69988db312". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+punit.s@BBMDVPUNITS website % docker rm website                                                                      
+
+website
+punit.s@BBMDVPUNITS website % 
+punit.s@BBMDVPUNITS website % docker run --name website -v $(pwd):/usr/share/nginx/html:ro -d -p 8080:80 nginx:latest
+7e8ef5a5e45f590a0980cfd14fd9820a550a0230709bf08eaa43fc0b6cf3b6c4
+punit.s@BBMDVPUNITS website % mate index.html
+punit.s@BBMDVPUNITS website % docker exec -t webiste bash
+Error: No such container: webiste
+punit.s@BBMDVPUNITS website % docker exec -t website bash 
+root@7e8ef5a5e45f:/# ls
+^[[A^C%                                                                                                                            punit.s@BBMDVPUNITS website % pwd
+/Users/punit.s/Documents/website
+punit.s@BBMDVPUNITS website % docker exec -t website bash
+root@7e8ef5a5e45f:/# pwd
+^[[B^[[B^[[B^[[B
+^C%                                                                                                                                punit.s@BBMDVPUNITS website % docker exec -t website bash
+root@7e8ef5a5e45f:/# cd /usr/share
+^C%                                                                                                                                punit.s@BBMDVPUNITS website % docker exec -t website zsh 
+OCI runtime exec failed: exec failed: container_linux.go:370: starting container process caused: exec: "zsh": executable file not found in $PATH: unknown
+punit.s@BBMDVPUNITS website % docker exec -it website bash
+root@7e8ef5a5e45f:/# ls
+bin   dev		   docker-entrypoint.sh  home  lib64  mnt  proc  run   srv  tmp  var
+boot  docker-entrypoint.d  etc			 lib   media  opt  root  sbin  sys  usr
+root@7e8ef5a5e45f:/# pwd
+/
+root@7e8ef5a5e45f:/# cd /usr/share/nginx
+root@7e8ef5a5e45f:/usr/share/nginx# ls
+html
+root@7e8ef5a5e45f:/usr/share/nginx# cd html
+root@7e8ef5a5e45f:/usr/share/nginx/html# ls
+index.html
+root@7e8ef5a5e45f:/usr/share/nginx/html# ls -al
+total 8
+drwxr-xr-x 3 root root   96 Feb 18 09:57 .
+drwxr-xr-x 3 root root 4096 Feb 17 19:20 ..
+-rw-r--r-- 1 root root   80 Feb 18 09:57 index.html
+root@7e8ef5a5e45f:/usr/share/nginx/html# ls
+index.html
+root@7e8ef5a5e45f:/usr/share/nginx/html# touch newfile.html
+touch: cannot touch 'newfile.html': Read-only file system
+root@7e8ef5a5e45f:/usr/share/nginx/html# ^C
+root@7e8ef5a5e45f:/usr/share/nginx/html# exit
+exit
+punit.s@BBMDVPUNITS website % docker rm -f webiste
+Error: No such container: webiste
+punit.s@BBMDVPUNITS website % docker rm -f website 
+website
+punit.s@BBMDVPUNITS website % docker run --name website -v $(pwd):/usr/share/nginx/html -d -p 8080:80 nginx:latest 
+ec3445fa46c63b5f18eb106a48737fa81a5fd110581ac62bd511b7999f37e8cf
+punit.s@BBMDVPUNITS website % docker exec -it website bash                                                        
+root@ec3445fa46c6:/# cd /usr/share/nginx/
+root@ec3445fa46c6:/usr/share/nginx# ls
+html
+root@ec3445fa46c6:/usr/share/nginx# cd html
+root@ec3445fa46c6:/usr/share/nginx/html# ls
+index.html
+root@ec3445fa46c6:/usr/share/nginx/html# touch about.html
+root@ec3445fa46c6:/usr/share/nginx/html# exit 
+exit
+punit.s@BBMDVPUNITS website % ls
+about.html	index.html
+punit.s@BBMDVPUNITS website % mate about.html
+punit.s@BBMDVPUNITS website % mate index.html
+punit.s@BBMDVPUNITS website % ls
+LICENSE			dist			package.json		src
+README.md		package-lock.json	scripts
+punit.s@BBMDVPUNITS website % docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                  NAMES
+ec3445fa46c6   nginx:latest   "/docker-entrypoint.…"   39 minutes ago   Up 39 minutes   0.0.0.0:8080->80/tcp   website
+punit.s@BBMDVPUNITS website % docker rm -f website
+website
+punit.s@BBMDVPUNITS website % docker ps           
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+punit.s@BBMDVPUNITS website % docker run --name website -v $(pwd):/usr/share/nginx/html -d -p 8080:80 nginx:latest
+b1fc21672c4a58389c6dea7e70a92c2fa28c135cd10339041f1165061d92110b
+punit.s@BBMDVPUNITS website % docker exec -it website bash
+root@b1fc21672c4a:/# ls
+bin   dev		   docker-entrypoint.sh  home  lib64  mnt  proc  run   srv  tmp  var
+boot  docker-entrypoint.d  etc			 lib   media  opt  root  sbin  sys  usr
+root@b1fc21672c4a:/# cd /usr/share/nginx/html
+root@b1fc21672c4a:/usr/share/nginx/html# ls
+LICENSE  README.md  dist  package-lock.json  package.json  scripts  src
+root@b1fc21672c4a:/usr/share/nginx/html# ls -al
+total 140
+drwxr-xr-x 10 root root    320 Feb 18 10:42 .
+drwxr-xr-x  3 root root   4096 Feb 17 19:20 ..
+-rw-r--r--  1 root root   6148 Feb 18 10:41 .DS_Store
+-rw-rw-r--  1 root root   1091 Nov  3 19:51 LICENSE
+-rw-rw-r--  1 root root   4446 Nov  3 19:51 README.md
+drwxrwxr-x  6 root root    192 Nov  3 19:51 dist
+-rw-rw-r--  1 root root 114446 Nov  3 19:51 package-lock.json
+-rw-rw-r--  1 root root   1687 Nov  3 19:51 package.json
+drwxrwxr-x 14 root root    448 Nov  3 19:51 scripts
+drwxrwxr-x  6 root root    192 Nov  3 19:51 src
+root@b1fc21672c4a:/usr/share/nginx/html# exit
+exit
+punit.s@BBMDVPUNITS website % docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS                  NAMES
+b1fc21672c4a   nginx:latest   "/docker-entrypoint.…"   7 minutes ago   Up 7 minutes   0.0.0.0:8080->80/tcp   website
+punit.s@BBMDVPUNITS website % docker run --name website-copy --volume-from website -d -p 8081:80 nginx
+unknown flag: --volume-from
+See 'docker run --help'.
+punit.s@BBMDVPUNITS website % docker run --name website-copy --volumes-from website -d -p 8081:80 nginx
+82e83e7258ad427bd6dc42532ac3ff7ad320e552d21a077efa098f71fd169622
+punit.s@BBMDVPUNITS website % docker ps                                                                
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                  NAMES
+82e83e7258ad   nginx          "/docker-entrypoint.…"   15 seconds ago   Up 14 seconds   0.0.0.0:8081->80/tcp   website-copy
+b1fc21672c4a   nginx:latest   "/docker-entrypoint.…"   8 minutes ago    Up 8 minutes    0.0.0.0:8080->80/tcp   website
+punit.s@BBMDVPUNITS website % docker image ls
+REPOSITORY          TAG       IMAGE ID       CREATED        SIZE
+docker101tutorial   latest    6663d6dd9b4e   3 hours ago    27.9MB
+nginx               latest    35c43ace9216   16 hours ago   133MB
+alpine/git          latest    04dbb58d2cea   4 weeks ago    25.1MB
+punit.s@BBMDVPUNITS website % ls
+Dockerfile		assets			index.html		package.json
+LICENSE			css			js			scripts
+README.md		dist			package-lock.json	src
+punit.s@BBMDVPUNITS website % docker build --tag website:latest .
+[+] Building 0.1s (2/2) FINISHED                                                                                                   
+ => [internal] load build definition from Dockerfile                                                                          0.0s
+ => => transferring dockerfile: 43B                                                                                           0.0s
+ => [internal] load .dockerignore                                                                                             0.0s
+ => => transferring context: 2B                                                                                               0.0s
+failed to solve with frontend dockerfile.v0: failed to create LLB definition: the Dockerfile cannot be empty
+punit.s@BBMDVPUNITS website % docker build --tag website:latest .
+[+] Building 0.3s (7/7) FINISHED                                                                                                   
+ => [internal] load build definition from Dockerfile                                                                          0.0s
+ => => transferring dockerfile: 95B                                                                                           0.0s
+ => [internal] load .dockerignore                                                                                             0.0s
+ => => transferring context: 2B                                                                                               0.0s
+ => [internal] load metadata for docker.io/library/nginx:latest                                                               0.0s
+ => [internal] load build context                                                                                             0.1s
+ => => transferring context: 3.97MB                                                                                           0.1s
+ => [1/2] FROM docker.io/library/nginx:latest                                                                                 0.1s
+ => => resolve docker.io/library/nginx:latest                                                                                 0.0s
+ => [2/2] ADD . /usr/share/nginx/html                                                                                         0.0s
+ => exporting to image                                                                                                        0.0s
+ => => exporting layers                                                                                                       0.0s
+ => => writing image sha256:173dfc83549154b3f2271fdd0a6a6b403fdfe2a5bbba1b07a113a09d7151a398                                  0.0s
+ => => naming to docker.io/library/website:latest                                                                             0.0s
+punit.s@BBMDVPUNITS website % docker images ls
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+punit.s@BBMDVPUNITS website % docker images   
+REPOSITORY          TAG       IMAGE ID       CREATED         SIZE
+website             latest    173dfc835491   3 minutes ago   137MB
+docker101tutorial   latest    6663d6dd9b4e   3 hours ago     27.9MB
+nginx               latest    35c43ace9216   16 hours ago    133MB
+alpine/git          latest    04dbb58d2cea   4 weeks ago     25.1MB
+punit.s@BBMDVPUNITS website % docker rm -f $(docker ps -aq)
+82e83e7258ad
+b1fc21672c4a
+punit.s@BBMDVPUNITS website % docker container
+
+Usage:  docker container COMMAND
+
+Manage containers
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  inspect     Display detailed information on one or more containers
+  kill        Kill one or more running containers
+  logs        Fetch the logs of a container
+  ls          List containers
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  prune       Remove all stopped containers
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  run         Run a command in a new container
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker container COMMAND --help' for more information on a command.
+punit.s@BBMDVPUNITS website % docker ps       
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+punit.s@BBMDVPUNITS website % docker run --name website -d -p 8080:80 website 
+cccb9eb3c41f0614d38274a13d34aaa60b0ffa0c2e5955a33e1da985a25b7a1a
+punit.s@BBMDVPUNITS website % docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS              PORTS                  NAMES
+cccb9eb3c41f   website   "/docker-entrypoint.…"   About a minute ago   Up About a minute   0.0.0.0:8080->80/tcp   website
+punit.s@BBMDVPUNITS website % docker stop website
+website
+punit.s@BBMDVPUNITS website % docker run --name website -d -p 8080:80 website:latest
+docker: Error response from daemon: Conflict. The container name "/website" is already in use by container "cccb9eb3c41f0614d38274a13d34aaa60b0ffa0c2e5955a33e1da985a25b7a1a". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+punit.s@BBMDVPUNITS website % docker rm website 
+website
+punit.s@BBMDVPUNITS website % docker run --name website -d -p 8080:80 website:latest
+423b1c99d152cc010ae65a87a5df4335d551b6f4d67fdce62641a059c6a47c5f
+punit.s@BBMDVPUNITS website % docker rm website                                     
+Error response from daemon: You cannot remove a running container 423b1c99d152cc010ae65a87a5df4335d551b6f4d67fdce62641a059c6a47c5f. Stop the container before attempting removal or force remove
+punit.s@BBMDVPUNITS website % docker stop website                                   
+website
+punit.s@BBMDVPUNITS website % docker rm website  
+website
+punit.s@BBMDVPUNITS website % docker run --name website -p 8080:80 -d website:latest 
+f90f7b59ab4a85d4062b1e3f46e313a5b0c684927774c5748f38398160626655
+punit.s@BBMDVPUNITS website % ls
+Dockerfile		assets			index.html		package.json
+LICENSE			css			js			scripts
+README.md		dist			package-lock.json	src
+punit.s@BBMDVPUNITS website % cd ..
+punit.s@BBMDVPUNITS Documents % cd ..
+punit.s@BBMDVPUNITS ~ % cd Documents
+punit.s@BBMDVPUNITS Documents % mkdir user-service-api
+punit.s@BBMDVPUNITS Documents % node --version
+v14.15.5
+punit.s@BBMDVPUNITS Documents % npn init
+zsh: command not found: npn
+punit.s@BBMDVPUNITS Documents % cd user-service-api
+punit.s@BBMDVPUNITS user-service-api % npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help init` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (user-service-api) npm install -save express
+Sorry, name can only contain URL-friendly characters.
+package name: (user-service-api) npm install --save express
+Sorry, name can only contain URL-friendly characters.
+package name: (user-service-api) 
+version: (1.0.0) 
+description: 
+entry point: (index.js) 
+test command: 
+git repository: 
+keywords: 
+author: 
+license: (ISC) 
+About to write to /Users/punit.s/Documents/user-service-api/package.json:
+
+{
+  "name": "user-service-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+
+
+Is this OK? (yes) yes
+punit.s@BBMDVPUNITS user-service-api % ll
+zsh: command not found: ll
+punit.s@BBMDVPUNITS user-service-api % npm install --save express
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN user-service-api@1.0.0 No description
+npm WARN user-service-api@1.0.0 No repository field.
+
++ express@4.17.1
+added 50 packages from 37 contributors and audited 50 packages in 3.347s
+found 0 vulnerabilities
+
+punit.s@BBMDVPUNITS user-service-api % ls  
+index.js		node_modules		package-lock.json	package.json
+punit.s@BBMDVPUNITS user-service-api % node index.js
+Example app listening at http://localhost:3000
+^C
+punit.s@BBMDVPUNITS user-service-api % node index.js
+Example app listening at http://localhost:3000
+^C
+punit.s@BBMDVPUNITS user-service-api % docker build -t user-service-api:latest .
+[+] Building 82.1s (9/9) FINISHED                                                                                                  
+ => [internal] load build definition from Dockerfile                                                                          0.0s
+ => => transferring dockerfile: 123B                                                                                          0.0s
+ => [internal] load .dockerignore                                                                                             0.0s
+ => => transferring context: 2B                                                                                               0.0s
+ => [internal] load metadata for docker.io/library/node:latest                                                                4.9s
+ => [1/4] FROM docker.io/library/node:latest@sha256:cb16b22cefb9a3a87f4d0bd1371e07fed4b8ff569b8f9f8c2efcc08edf11a854         73.8s
+ => => resolve docker.io/library/node:latest@sha256:cb16b22cefb9a3a87f4d0bd1371e07fed4b8ff569b8f9f8c2efcc08edf11a854          0.0s
+ => => sha256:cb16b22cefb9a3a87f4d0bd1371e07fed4b8ff569b8f9f8c2efcc08edf11a854 776B / 776B                                    0.0s
+ => => sha256:b7adaa0fa4be4fa9db5f39882085dc44adc43576aa1479ab912fa4fcf51ecb98 2.21kB / 2.21kB                                0.0s
+ => => sha256:a0edb687a3dadde6ae013f9b8f08340de1f105266abe3081bba8e8939267978a 11.27MB / 11.27MB                              6.5s
+ => => sha256:6891892cc2ec4337be73614b6c3eecd8f1a1ac16eae254d1e4b6090358dd6782 4.34MB / 4.34MB                                2.5s
+ => => sha256:ebcfbb59a4bd9bba8a2127917c463a0cf3fc01141dc74281a1a0547d3de45bf2 7.83kB / 7.83kB                                0.0s
+ => => sha256:1e987daa2432270bbfaf366f57583c93b48e0ee6c9fe54fe7f4030b84095627f 45.38MB / 45.38MB                             22.9s
+ => => sha256:684eb726ddc51bc28fc2fad831de6492b911f461a18bc7334ca803d74caea0d4 49.79MB / 49.79MB                             27.3s
+ => => sha256:b0af097f0da63eae879eb3b70dd97e41cd4415e6a6e8420de16210e77ec1e6e9 214.32MB / 214.32MB                           61.6s
+ => => extracting sha256:1e987daa2432270bbfaf366f57583c93b48e0ee6c9fe54fe7f4030b84095627f                                     2.3s
+ => => sha256:154aee36a7da851a2fba504f64837008b8ce330a7160d004bcb499d07582ecdd 4.16kB / 4.16kB                               23.2s
+ => => sha256:4dfe553b641e4204db66d840ad205df0fe91c4659fefd958a0a0fba0802eb42f 33.85MB / 33.85MB                             36.8s
+ => => extracting sha256:a0edb687a3dadde6ae013f9b8f08340de1f105266abe3081bba8e8939267978a                                     0.5s
+ => => extracting sha256:6891892cc2ec4337be73614b6c3eecd8f1a1ac16eae254d1e4b6090358dd6782                                     0.2s
+ => => sha256:ce0cc1c1f5964d3fe96197da11fa20253c0b77f3bf3bebe27932dda2a15cd74f 2.38MB / 2.38MB                               28.9s
+ => => extracting sha256:684eb726ddc51bc28fc2fad831de6492b911f461a18bc7334ca803d74caea0d4                                     2.8s
+ => => sha256:7eca74d68564b3ebce683daaec49263a53f36d2d347420d3be7a25718198106f 292B / 292B                                   29.3s
+ => => extracting sha256:b0af097f0da63eae879eb3b70dd97e41cd4415e6a6e8420de16210e77ec1e6e9                                     9.5s
+ => => extracting sha256:154aee36a7da851a2fba504f64837008b8ce330a7160d004bcb499d07582ecdd                                     0.1s
+ => => extracting sha256:4dfe553b641e4204db66d840ad205df0fe91c4659fefd958a0a0fba0802eb42f                                     1.8s
+ => => extracting sha256:ce0cc1c1f5964d3fe96197da11fa20253c0b77f3bf3bebe27932dda2a15cd74f                                     0.2s
+ => => extracting sha256:7eca74d68564b3ebce683daaec49263a53f36d2d347420d3be7a25718198106f                                     0.0s
+ => [internal] load build context                                                                                             0.1s
+ => => transferring context: 1.74MB                                                                                           0.1s
+ => [2/4] WORKDIR /app                                                                                                        0.1s
+ => [3/4] ADD . .                                                                                                             0.1s
+ => [4/4] RUN  npm install                                                                                                    3.0s
+ => exporting to image                                                                                                        0.1s
+ => => exporting layers                                                                                                       0.1s
+ => => writing image sha256:61e6e358121a2c9c695830b7fa452284a8e10704386b858d9ab1ed4ae91ed217                                  0.0s
+ => => naming to docker.io/library/user-service-api:latest                                                                    0.0s
+punit.s@BBMDVPUNITS user-service-api % docker image
+
+Usage:  docker image COMMAND
+
+Manage images
+
+Commands:
+  build       Build an image from a Dockerfile
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Display detailed information on one or more images
+  load        Load an image from a tar archive or STDIN
+  ls          List images
+  prune       Remove unused images
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rm          Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+
+Run 'docker image COMMAND --help' for more information on a command.
+punit.s@BBMDVPUNITS user-service-api % docker images
+REPOSITORY          TAG       IMAGE ID       CREATED             SIZE
+user-service-api    latest    61e6e358121a   2 minutes ago       940MB
+website             latest    173dfc835491   About an hour ago   137MB
+docker101tutorial   latest    6663d6dd9b4e   4 hours ago         27.9MB
+nginx               latest    35c43ace9216   17 hours ago        133MB
+alpine/git          latest    04dbb58d2cea   4 weeks ago         25.1MB
+punit.s@BBMDVPUNITS user-service-api % docker ps    
+CONTAINER ID   IMAGE            COMMAND                  CREATED          STATUS          PORTS                  NAMES
+f90f7b59ab4a   website:latest   "/docker-entrypoint.…"   58 minutes ago   Up 58 minutes   0.0.0.0:8080->80/tcp   website
+punit.s@BBMDVPUNITS user-service-api % docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+punit.s@BBMDVPUNITS user-service-api % docker run --name user-container -d -p 3000:3000 user-service-api:latest
+6471127c0a33ec780537fa3e86b084e823f1d8217ae8cc2a2724851aff75a9c3
+punit.s@BBMDVPUNITS user-service-api % 
